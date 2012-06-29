@@ -1,0 +1,55 @@
+#********************************************************************
+# Wrapper Timeout Properties
+#********************************************************************
+wrapper.startup.timeout=300
+wrapper.shutdown.timeout=300
+wrapper.ping.timeout=300
+
+#********************************************************************
+# Wrapper Java Properties
+#********************************************************************
+wrapper.java.command=java
+#wrapper.java.command.loglevel=INFO
+
+wrapper.java.mainclass=org.tanukisoftware.wrapper.WrapperJarApp
+wrapper.java.classpath.1=<%= node['logstash']['server_path'] %>/lib/wrapper.jar
+wrapper.java.classpath.2=<%= node['logstash']['server_path'] %>/bin/logstash-<%= node['logstash']['server_version'] %>-monolithic.jar
+wrapper.java.library.path.1=<%= node['logstash']['server_path'] %>/lib
+wrapper.java.additional.1=-Des.path.data=<%= node['logstash']['server_data'] %>
+
+wrapper.java.additional.auto_bits=TRUE
+
+wrapper.app.parameter.1=<%= node['logstash']['server_path'] %>/bin/logstash-<%= node['logstash']['server_version'] %>-monolithic.jar
+wrapper.app.parameter.2=agent
+wrapper.app.parameter.3=-vvv
+wrapper.app.parameter.4=-f
+wrapper.app.parameter.5=<%= node['logstash']['server_etc'] %>/logstash.conf
+wrapper.app.parameter.6=-l
+wrapper.app.parameter.7=<%= node['logstash']['server_logs'] %>/logstash.log
+wrapper.app.parameter.8=--
+wrapper.app.parameter.9=web
+wrapper.app.parameter.10=--backend
+wrapper.app.parameter.11=elasticsearch://127.0.0.1/?local
+
+#********************************************************************
+# Wrapper Logging Properties
+#********************************************************************
+# wrapper.debug=TRUE
+wrapper.console.format=PM
+wrapper.console.loglevel=INFO
+wrapper.logfile=<%= node['logstash']['server_logs'] %>/servicewrapper.log
+wrapper.logfile.format=LPTM
+wrapper.logfile.loglevel=INFO
+wrapper.logfile.maxsize=0
+wrapper.logfile.maxfiles=0
+wrapper.syslog.loglevel=NONE
+
+#********************************************************************
+# Wrapper General Properties
+#********************************************************************
+wrapper.ignore_sequence_gaps=TRUE
+wrapper.console.title=logstash
+wrapper.name=logstash
+wrapper.displayname=logstash
+wrapper.description=A fully free and fully open source tool for managing events and logs.
+

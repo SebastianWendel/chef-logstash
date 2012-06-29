@@ -1,0 +1,20 @@
+input {
+  file {
+    type => "linux-syslog"
+    path => [ "/var/log/messages" ]
+  }
+  file {
+    type => "apache-access"
+    path => "/var/log/httpd/access_log"
+  }
+  file {
+    type => "apache-error"
+    path => "/var/log/httpd/error_log"
+  }
+}
+output {
+gelf {
+    facility => "logstash-gelf"
+    host => "0.0.0.0"
+  }
+}
